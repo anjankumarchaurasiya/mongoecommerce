@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {viewProductList,addProductForm,createProduct} = require('../../controllers/admin/product.controller');
+const {viewProductList,addProductForm,createProduct,changeStatus} = require('../../controllers/admin/product.controller');
 const trimRequest = require('trim-request');
 const multer =require('multer');
 const path = require('path');
@@ -29,5 +29,7 @@ router.get('/',[ensureAuthenticated,isAdmin],trimRequest.all,viewProductList);
 router.get('/add',[ensureAuthenticated,isAdmin],trimRequest.all,addProductForm);
 // add category
 router.post('/add',[ensureAuthenticated,isAdmin],trimRequest.all,upload.array('image'),createProduct);
+//change status
+router.get('/status/:id',[ensureAuthenticated,isAdmin],trimRequest.all,changeStatus)
 
 module.exports = router;

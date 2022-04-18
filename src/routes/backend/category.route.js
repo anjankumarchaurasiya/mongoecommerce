@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {createCategory,addCategoryForm,viewCategoryList} = require('../../controllers/admin/category.controller');
+const {createCategory,addCategoryForm,viewCategoryList,deleteCategory} = require('../../controllers/admin/category.controller');
 const trimRequest = require('trim-request');
 const multer =require('multer');
 const path = require('path');
@@ -23,5 +23,6 @@ router.get('/',[ensureAuthenticated,isAdmin],trimRequest.all,viewCategoryList);
 router.get('/add',[ensureAuthenticated,isAdmin],trimRequest.all,addCategoryForm);
 // add category
 router.post('/add',[ensureAuthenticated,isAdmin],trimRequest.all,upload.single('image'),createCategory);
-
+// delete category
+router.get('/delete/:id',[ensureAuthenticated,isAdmin],trimRequest.all,deleteCategory);
 module.exports = router;

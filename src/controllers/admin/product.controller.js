@@ -1,3 +1,4 @@
+const { TABLE_PERPAGE } = require('../../config/constants');
 const {Product,validateProduct} = require('../../models/product.model'); 
 const {Category} = require('../../models/category.model'); 
 const slugify = require('slugify');
@@ -6,16 +7,14 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
  
+const PERPAGE = TABLE_PERPAGE;
 // view category list
 const viewProductList = async function (req, res, next) {
-    const perPage = 5;
+    const perPage = PERPAGE;
     const page = req.query.page || 1;
     const skip = ((perPage * page) - perPage);
-
     try {
- 
         const product = await Product.aggregate([
-            
             { $lookup:
                 {
                     from: 'categories',
@@ -138,4 +137,19 @@ function getChildrenCategory(categories , parentId = null){
   }
   return categoryList;
 }
-module.exports = { createProduct,addProductForm,viewProductList };
+// Change status
+const changeStatus = async function(req,res,next){
+    let productid = req.params.id;
+    let productinfo = await Product.findById(productid);
+    let update_status = (productinfo.status == 1)?0:1;
+    Product.findOneAndUpdate({_id:productid},{$set:{status:update_status}},{new:true},(err,doc)=> {
+        if(!err){
+            req.flash('success_msg', 'Product status changed successfully.');
+            res.redirect('/product');
+        }else{
+            req.flash('error_msg', 'Product status changed successfully.');
+            res.redirect('/product');
+        }
+    });
+}
+module.exports = { createProduct,addProductForm,viewProductList,changeStatus};

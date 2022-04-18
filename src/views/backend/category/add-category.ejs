@@ -7,36 +7,42 @@
     <div class="card">
       <div class="card-body">
         <%- include('../../partials/backend/_msg-form') %>
-        <h4 class="card-title">Add category</h4>
+        <h4 class="card-title"><%= title %></h4>
         <form class="forms-sample" method="post" action="/category/add" enctype="multipart/form-data">
           <div class="form-group row">
             <label for="categroyname" class="col-sm-3 col-form-label">Category name</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="categroyname" placeholder="Category name" name="name">
+              <input type="text" class="form-control" id="categroyname" placeholder="Category name" name="name" value="<%= formData.name %>" required>
             </div>
           </div>
           <div class="form-group row">
             <label for="serialNo" class="col-sm-3 col-form-label">Serial no</label>
             <div class="col-sm-9">
-              <input type="number" min="1" class="form-control" id="serialNo" placeholder="Category Serial no." name="serialNo" reuired>
+              <input type="number" min="1" class="form-control" id="serialNo" placeholder="Category Serial no." name="serialNo" value="<%= formData.serialNo %>" required>
             </div>
           </div>
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label">Description</label>
             <div class="col-sm-9">
-              <textarea class="form-control" id="description" placeholder="Category description" name="description" reuired></textarea>
+              <textarea class="form-control" id="description" placeholder="Category description" name="description"><%= formData.description %></textarea>
             </div>
           </div>
           <div class="form-group row">
             <label for="metaDescription" class="col-sm-3 col-form-label">Meta description</label>
             <div class="col-sm-9">
-              <textarea class="form-control" id="metaDescription" placeholder="Meta description" name="metaDescription"></textarea>
+              <textarea class="form-control" id="metaDescription" placeholder="Meta description" name="metaDescription"><%= formData.metaDescription %></textarea>
             </div>
           </div>
           <div class="form-group row">
             <label for="metaTitle" class="col-sm-3 col-form-label">Meta title</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="metaTitle" placeholder="Meta title" name="metaTitle">
+              <input type="text" class="form-control" id="metaTitle" placeholder="Meta title" name="metaTitle" value="<%= formData.metaTitle %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="metaTitle" class="col-sm-3 col-form-label">Schema code</label>
+            <div class="col-sm-9">
+              <textarea class="form-control" id="schemaCode" placeholder="Seo schema code" name="schemaCode"><%= formData.schemaCode %></textarea>
             </div>
           </div>
           <div class="form-group row">
@@ -54,10 +60,15 @@
           <div class="form-group row">
             <label for="image" class="col-sm-3 col-form-label">Image</label>
             <div class="col-sm-9">
-              <input type="file" name="image" class="form-control" id="image">
+              <input type="file" name="image" class="form-control" id="image" accept="image/*">
             </div>
           </div>
-
+          <div class="form-group row">
+            <label for="metaTitle" class="col-sm-3 col-form-label">Image alt</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="imageAlt" placeholder="Image alt" name="imageAlt" value="<%= formData.imageAlt %>">
+            </div>
+          </div>
           <button type="submit" class="btn btn-gradient-primary mr-2" type="submit">Submit</button>
           <button class="btn btn-light" type="reset">Cancel</button>
         </form>

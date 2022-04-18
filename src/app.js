@@ -126,7 +126,11 @@ app.use(function(req, res, next) {
   next();
 });
 
- // use route
+// fredirect to admin path
+app.get('/',function(req, res){
+  res.redirect('/admin');
+})
+// use route
 app.use('/auth', authRouter);
 app.use('/admin', beRouter);
 app.use('/dashboard', dashboardRouter);
@@ -134,7 +138,7 @@ app.use('/category',categoryRouter);
 app.use('/product',productRouter);
 // catch 404 and forward to error handler
 app.use((req, res) => {
-  res.status(404).render('errorpages/404');
+  res.status(404).send("Crime Scene 404. Do not repeat");
 });
 
 app.use(express.json());

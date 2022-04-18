@@ -48,7 +48,11 @@
                   <a href="">reviews </a><%=  product.reviews.length   %>
                 </td>
                 <td>
-                  <%=  product.status  %>
+                  <%  if(product.status){  %>
+                  <a href="/product/status/<%= product._id %>"><button class="btn btn-success btn-xs">Enable</button></a>
+                  <% }else{ %>
+                  <a href="/product/status/<%= product._id %>"><button class="btn btn-danger btn-xs">Disable</button></a>
+                  <% } %>
                 </td>
                 <td>
                   <%= timeago(product.createdAt); %></br>
