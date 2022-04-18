@@ -105,8 +105,7 @@ const createCategory = async function (req, res, next) {
             schemaCode:schemaCode
         });
 
-        (parentId !=="")? category.parentId = parentId:'';
-         
+        (parentId !=="")? category.parentId = parentId:'';  
         category.categoryImage = {image: (req.file)? req.file.path:'',imageAlt:imageAlt};
          
         try {
