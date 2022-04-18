@@ -1,0 +1,67 @@
+<div class="page-header">
+  <h3 class="page-title"> Category </h3>
+
+</div>
+<div class="row">
+  <div class="col-md-8 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <%- include('../../partials/backend/_msg-form') %>
+        <h4 class="card-title">Add category</h4>
+        <form class="forms-sample" method="post" action="/category/add" enctype="multipart/form-data">
+          <div class="form-group row">
+            <label for="categroyname" class="col-sm-3 col-form-label">Category name</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="categroyname" placeholder="Category name" name="name">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="serialNo" class="col-sm-3 col-form-label">Serial no</label>
+            <div class="col-sm-9">
+              <input type="number" min="1" class="form-control" id="serialNo" placeholder="Category Serial no." name="serialNo" reuired>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="description" class="col-sm-3 col-form-label">Description</label>
+            <div class="col-sm-9">
+              <textarea class="form-control" id="description" placeholder="Category description" name="description" reuired></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="metaDescription" class="col-sm-3 col-form-label">Meta description</label>
+            <div class="col-sm-9">
+              <textarea class="form-control" id="metaDescription" placeholder="Meta description" name="metaDescription"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="metaTitle" class="col-sm-3 col-form-label">Meta title</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="metaTitle" placeholder="Meta title" name="metaTitle">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="parentId" class="col-sm-3 col-form-label">Parent category</label>
+            <div class="col-sm-9">
+              <select class="form-control" id="parentId" name="parentId">
+                <option value="">Select category</option>
+                <% data.forEach(function(cat){ %>
+                <option value="<%= cat._id %>"><%= cat.name %></option>
+                <%- include('../../partials/backend/optiontreeview', {tree: cat.children}); %>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="image" class="col-sm-3 col-form-label">Image</label>
+            <div class="col-sm-9">
+              <input type="file" name="image" class="form-control" id="image">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-gradient-primary mr-2" type="submit">Submit</button>
+          <button class="btn btn-light" type="reset">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

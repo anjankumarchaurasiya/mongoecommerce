@@ -1,0 +1,10 @@
+<% if (locals.errors) { %>
+<div class="error-box text-left mb-5">
+  <label class="text-danger">Errors</label>
+  <% errors.forEach(function(error) { %>
+  <li class="text-danger">
+    <%= error.text %>
+  </li>
+  <% }) %>
+</div>
+<% } %>

@@ -1,0 +1,12 @@
+<% 
+var markup = '';
+function cateSubcatTree(items,sub_mark = ''){
+    for (var i = 0; i < items.length; i++) {
+        markup += '<option value="'+items[i]._id+'">'+sub_mark + items[i].name + '</option>';
+        // Children
+        cateSubcatTree(items[i].children,sub_mark+'&#8722;&#8722;');
+    }
+}
+cateSubcatTree(tree,'&#8722');
+%>
+<%- markup %>

@@ -1,0 +1,2 @@
+$('#productDatatable').DataTable();
+ 
