@@ -5,7 +5,7 @@ const fs = require('fs');
  exports.multerConfig = (multer) => {
     
     const storage = multer.diskStorage({
-        destination: 'src/public/assets/category/',
+        destination: '/assets/category/',
         filename: function (req, file, callback) {
             callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
         }

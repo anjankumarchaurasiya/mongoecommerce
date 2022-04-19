@@ -35,6 +35,21 @@
         </ul>
       </div>
     </li>
+    <li class="nav-item <%= (url == "/brand" || url == "/brand/add")?'active':'' %>">
+      <a class="nav-link" data-toggle="collapse" href="#brand-manager" aria-expanded="false" aria-controls="brand-manager">
+        <span class="menu-title">Brand manager</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+      </a>
+      <div class="collapse <%= (url == "/brand" || url == "/brand/add")?'show':'' %>" id="brand-manager">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link <%= (url == "/brand")?'active':'' %>" href="/brand">Brand list</a>
+          </li>
+          <li class="nav-item"> <a class="nav-link <%= (url == "/brand/add")?'active':'' %>" href="/brand/add">Brand add</a>
+          </li>
+        </ul>
+      </div>
+    </li>
     <li class="nav-item <%= (url == "/product" || url == "/product/add")?'active':'' %>">
       <a class="nav-link" data-toggle="collapse" href="#product-manager" aria-expanded="false" aria-controls="product-manager">
         <span class="menu-title">Product manager</span>

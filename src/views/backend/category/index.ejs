@@ -13,7 +13,7 @@
 
           <% data.forEach(function(cat){ %>
           <li>
-            <div class="icon-name-group"><%= cat.name %><span class="icon-group"><span class="btn mdi text-secondary mdi-playlist-edit"></span><a href="/category/delete/<%- cat._id %>" class="href-link"><span class="btn mdi mdi-delete text-secondary"></span></a></span>
+            <div class="icon-name-group"><img width="50" src="<%= cat.categoryImage.image %>"><%= cat.name %><span class="icon-group"><span class="btn mdi text-secondary mdi-playlist-edit"></span><a href="/category/delete/<%- cat._id %>" class="href-link"><span class="btn mdi mdi-delete text-secondary"></span></a></span>
             </div>
             <%- include('../../partials/backend/treeview', {tree: cat.children}); %>
           </li>
@@ -22,7 +22,7 @@
           <% if (data.length) { %>
         </ul>
         <% }else{ %>
-          <p class="text-center">Data not available</p>
+        <p class="text-center">Data not available</p>
         <% } %>
       </div>
     </div>

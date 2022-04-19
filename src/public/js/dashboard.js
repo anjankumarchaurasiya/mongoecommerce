@@ -2,6 +2,20 @@
   'use strict';
   $(function() {
 
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+          $('.imgdivgroup').html('<img width="80" src="'+e.target.result+'">')
+        }
+        
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
+      }
+    }
+    $(".imagepreview").change(function() {
+      readURL(this);
+    });
    
     Chart.defaults.global.legend.labels.usePointStyle = true;
     

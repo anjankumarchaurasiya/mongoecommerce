@@ -10,11 +10,10 @@ const viewCategoryList = async function (req, res, next) {
     const perPage = 5;
     const page = req.query.page || 1;
     const skip = ((perPage * page) - perPage);
-    const cat = await Category.find();
-    const childrencategory = getChildrenCategory(cat);
     try {
         const cat = await Category.find();
         const childrencategory = getChildrenCategory(cat);
+          console.log('category',childrencategory);
         //   const category = await Category.find().skip(skip).limit(perPage);
         //   const pages = await Category.find().countDocuments();
       res.render("backend/category", {
@@ -32,8 +31,10 @@ const viewCategoryList = async function (req, res, next) {
 } 
  // view add category form
 const addCategoryForm = async function (req, res, next) {
+  
   const cat = await Category.find();
   const category = getChildrenCategory(cat);
+
   res.render('backend/category/add-category', 
   { 
     title: 'Add category',
@@ -48,8 +49,6 @@ function getChildrenCategory(categories , parentId){
   if(parentId === null )
   {
     category = categories.filter(cat => cat.parentId == null);
-  }else if(parentId === undefined ){
-    category=categories;
   }else{
     category = categories.filter(cat => cat.parentId == parentId);
   }
@@ -58,6 +57,7 @@ function getChildrenCategory(categories , parentId){
     categoryList.push({
         _id:cate._id,
         name:cate.name,
+        categoryImage:cate.categoryImage,
         children:getChildrenCategory(categories , cate._id)
     });
   }
@@ -96,7 +96,7 @@ const createCategory = async function (req, res, next) {
     } else {
 
         const category = new Category({
-            name: name.toUpperCase(),
+            name:name,
             slug:slugify(name),
             serialNo:serialNo,
             description:description,
@@ -115,18 +115,18 @@ const createCategory = async function (req, res, next) {
                 res.redirect('/category/add');
             }
         } catch (ex) {
-          console.log('ex',ex);
+            (req.file)? fs.unlinkSync(req.file.path):'';
             for (let field in ex.errors) {
-                errors.push({
-                    text: ex.errors[field].message
-                });
+              errors.push({
+                text: ex.errors[field].message
+              });
             }            
             res.render('backend/category/add-category', {
-                title: 'Add category',
-                errors: errors,
-                layout: 'layouts/backend',
-                data:categoryList,
-                formData:req.body
+              title: 'Add category',
+              errors: errors,
+              layout: 'layouts/backend',
+              data:categoryList,
+              formData:req.body
             });
         }   
     }
