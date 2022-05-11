@@ -25,6 +25,10 @@ import categoryRouter from "./routes/backend/category.route";
 import productRouter from './routes/backend/product.route';
 //
 import helpers from './helpers';
+// global defined
+global._ = require('lodash');
+global.APP_PATH = __dirname;
+global.BACKEND_FOLDER = 'src';  
 
 config()
 const app = express();

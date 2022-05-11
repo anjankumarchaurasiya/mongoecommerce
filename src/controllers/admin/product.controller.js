@@ -80,7 +80,7 @@ const createProduct = async function (req, res, next) {
         if(req.files.length > 0)
         {
             images = req.files.map(file => {
-                return {image:file.path}
+                return {image:process.env.PRODUCT_STORAGE+file.filename}
             });
         }
         const product = new Product({

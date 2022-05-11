@@ -12,8 +12,8 @@ const bodyParser = require('body-parser')
 const parseForm = bodyParser.urlencoded({ extended: false });
 
  // Setting the storage engine.
- const { multerConfig } = require('../../helpers/multer.helper');
- var upload = multerConfig(multer);
+ const { productStorage } = require('../../helpers/multer.helper');
+ var productUpload = productStorage(multer);
 const { 
     ensureAuthenticated,
     isAdmin,
@@ -28,7 +28,7 @@ router.get('/',[ensureAuthenticated,isAdmin],trimRequest.all,viewProductList);
 // add category form
 router.get('/add',[ensureAuthenticated,isAdmin],trimRequest.all,addProductForm);
 // add category
-router.post('/add',[ensureAuthenticated,isAdmin],trimRequest.all,upload.array('image'),createProduct);
+router.post('/add',[ensureAuthenticated,isAdmin],trimRequest.all,productUpload.array('image'),createProduct);
 //change status
 router.get('/status/:id',[ensureAuthenticated,isAdmin],trimRequest.all,changeStatus)
 

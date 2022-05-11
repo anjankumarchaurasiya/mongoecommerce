@@ -13,7 +13,7 @@ const viewCategoryList = async function (req, res, next) {
     try {
         const cat = await Category.find();
         const childrencategory = getChildrenCategory(cat);
-          console.log('category',childrencategory);
+          // console.log('category',childrencategory);
         //   const category = await Category.find().skip(skip).limit(perPage);
         //   const pages = await Category.find().countDocuments();
       res.render("backend/category", {
@@ -31,10 +31,9 @@ const viewCategoryList = async function (req, res, next) {
 } 
  // view add category form
 const addCategoryForm = async function (req, res, next) {
-  
+
   const cat = await Category.find();
   const category = getChildrenCategory(cat);
-
   res.render('backend/category/add-category', 
   { 
     title: 'Add category',
@@ -78,14 +77,11 @@ const createCategory = async function (req, res, next) {
     let parentId = req.body.parentId;
     let schemaCode = req.body.schemaCode;
     let imageAlt = req.body.imageAlt;
-    
     const {error} = validateCategory(req.body);
-
     if (error) {
         errors.push({
             text: error.details[0].message
         });
-
         res.render('backend/category/add-category', {
             title: 'Add category',
             errors: errors,
@@ -94,7 +90,6 @@ const createCategory = async function (req, res, next) {
             formData:req.body
         });
     } else {
-
         const category = new Category({
             name:name,
             slug:slugify(name),
@@ -104,10 +99,8 @@ const createCategory = async function (req, res, next) {
             metaTitle:metaTitle,
             schemaCode:schemaCode
         });
-
         (parentId !=="")? category.parentId = parentId:'';  
-        category.categoryImage = {image: (req.file)? req.file.path:'',imageAlt:imageAlt};
-         
+        category.categoryImage = {image:(req.file)? process.env.CATEGORY_STORAGE+req.file.filename:'',imageAlt:imageAlt};
         try {
             const result = await category.save();
             if (result) {

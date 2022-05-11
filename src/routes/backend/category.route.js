@@ -6,8 +6,8 @@ const multer =require('multer');
 const path = require('path');
 const fs = require('fs');
  // Setting the storage engine.
- const { multerConfig } = require('../../helpers/multer.helper');
- var upload = multerConfig(multer);
+const { categoryStorage } = require('../../helpers/multer.helper');
+var categoryupload = categoryStorage(multer);
 const { 
     ensureAuthenticated,
     isAdmin,
@@ -22,7 +22,7 @@ router.get('/',[ensureAuthenticated,isAdmin],trimRequest.all,viewCategoryList);
 // add category form
 router.get('/add',[ensureAuthenticated,isAdmin],trimRequest.all,addCategoryForm);
 // add category
-router.post('/add',[ensureAuthenticated,isAdmin],trimRequest.all,upload.single('image'),createCategory);
+router.post('/add',[ensureAuthenticated,isAdmin],trimRequest.all,categoryupload.single('image'),createCategory);
 // delete category
 router.get('/delete/:id',[ensureAuthenticated,isAdmin],trimRequest.all,deleteCategory);
 module.exports = router;
