@@ -29,35 +29,35 @@ module.exports = {
         
     },
     readAccessControl: function (req, res, next) {
-        if (req.user.privileges.read == true) {
-            return next();
-        }
+        // if (req.user.privileges.read == true) {
+        //     return next();
+        // }
 
-        req.flash('error_msg', 'You do not have the required permissions to perform this action.');
-        res.redirect('/dashboard');
+        // req.flash('error_msg', 'You do not have the required permissions to perform this action.');
+        // res.redirect('/dashboard');
     },
     createAccessControl: function (req, res, next) {
-        if (req.user.privileges.create == true) {
-            return next();
-        }
+        // if (req.user.privileges.create == true) {
+        //     return next();
+        // }
 
-        req.flash('error_msg', 'You do not have the required permissions to perform this action.');
-        res.redirect('/dashboard');
+        // req.flash('error_msg', 'You do not have the required permissions to perform this action.');
+        // res.redirect('/dashboard');
     },
     updateAccessControl: function (req, res, next) {
-        if (req.user.privileges.update == true) {
-            return next();
-        }
+        // if (req.user.privileges.update == true) {
+        //     return next();
+        // }
 
-        req.flash('error_msg', 'You do not have the required permissions to perform this action.');
-        res.redirect('/dashboard');
+        // req.flash('error_msg', 'You do not have the required permissions to perform this action.');
+        // res.redirect('/dashboard');
     },
     deleteAccessControl: function (req, res, next) {
-        if (req.user.privileges.delete == true) {
-            return next();
-        }
+        // if (req.user.privileges.delete == true) {
+        //     return next();
+        // }
 
-        req.flash('error_msg', 'You do not have the required permissions to perform this action.');
-        res.redirect('/dashboard');
+        // req.flash('error_msg', 'You do not have the required permissions to perform this action.');
+        // res.redirect('/dashboard');
     }
 }

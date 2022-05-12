@@ -100,7 +100,7 @@ const createCategory = async function (req, res, next) {
             schemaCode:schemaCode
         });
         (parentId !=="")? category.parentId = parentId:'';  
-        category.categoryImage = {image:(req.file)? process.env.CATEGORY_STORAGE+req.file.filename:'',imageAlt:imageAlt};
+        category.categoryImage = {image:(req.file)? process.env.CATEGORY_IMAGE_STORAGE+req.file.filename:'',imageAlt:imageAlt};
         try {
             const result = await category.save();
             if (result) {

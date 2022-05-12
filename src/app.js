@@ -23,6 +23,7 @@ import beRouter from "./routes/beAuth.route";
 import dashboardRouter from "./routes/backend/dashboard.route";
 import categoryRouter from "./routes/backend/category.route";
 import productRouter from './routes/backend/product.route';
+import brandRouter from './routes/backend/brand.route';
 //
 import helpers from './helpers';
 // global defined
@@ -140,6 +141,7 @@ app.use('/admin', beRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/category',categoryRouter);
 app.use('/product',productRouter);
+app.use('/brand',brandRouter);
 // catch 404 and forward to error handler
 app.use((req, res) => {
   res.status(404).send("Crime Scene 404. Do not repeat");

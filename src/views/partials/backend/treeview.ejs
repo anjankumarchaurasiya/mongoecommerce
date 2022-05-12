@@ -6,8 +6,9 @@ function htmlTreeBuilder(items) {
             markup += '<ul class="sucategory">';
         }
         for (var i = 0; i < items.length; i++) {
+            let ifImage = (items[i].categoryImage.image !=="")?'<img width="50" src="'+items[i].categoryImage.image+'">':'';
             markup += '<li>';
-            markup += '<div class="icon-name-group">' + items[i].name + '<span class="icon-group"><span class="btn mdi text-secondary mdi-playlist-edit"></span><a href="/category/delete/'+items[i]._id+'" class="href-link"><span class=" btn mdi mdi-delete text-secondary"></span></a></span></div>';
+            markup += '<div class="icon-name-group">'  + items[i].name +  '<span class="icon-group"><span class="btn mdi text-secondary mdi-playlist-edit"></span><a href="/category/delete/'+items[i]._id+'" class="href-link"><span class=" btn mdi mdi-delete text-secondary"></span></a></span></div>';
 
             // Children
             htmlTreeBuilder(items[i].children);
